@@ -1,4 +1,6 @@
 import {useState} from "react";
+import SignIn from "./SignIn.tsx";
+import SignUp from "./SignUp.tsx";
 
 
 const Guest = () => {
