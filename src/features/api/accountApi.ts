@@ -45,7 +45,7 @@ export const fetchUser = createAsyncThunk(
     }
 )
 
-export const updateUser = createAsyncThunk<UserProfile, UserDate, { state: RootState}>(
+export const updateUser = createAsyncThunk<UserProfile, UserDate, { state: RootState }>(
     'user/update',
     async (user, {getState}) => {
         const response = await fetch(`${base_url}/account/user`, {
@@ -66,7 +66,9 @@ export const updateUser = createAsyncThunk<UserProfile, UserDate, { state: RootS
     }
 )
 
-export const changePassword = createAsyncThunk<string, {newPassword: string, oldPassword: string}, {state: RootState}>(
+export const changePassword = createAsyncThunk<string, { newPassword: string, oldPassword: string }, {
+    state: RootState
+}>(
     'user/password',
     async ({newPassword, oldPassword}, {getState}) => {
         const response = await fetch(`${base_url}/account/user/password`, {
@@ -84,6 +86,4 @@ export const changePassword = createAsyncThunk<string, {newPassword: string, old
         }
         return createToken(getState().user.login, newPassword);
 
-    }
-
-)
+    })
