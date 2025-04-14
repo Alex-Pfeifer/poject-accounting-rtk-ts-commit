@@ -1,6 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {UserDate, UserRegister} from "../../utils/types";
+import {UserDate, UserProfile, UserRegister} from "../../utils/types";
 import {base_url, createToken} from "../../utils/constants.ts";
+import {RootState} from "../../app/store.ts";
 
 export const registerUser = createAsyncThunk(
     'user/register',
@@ -39,14 +40,14 @@ export const fetchUser = createAsyncThunk(
         if (!response.ok) {
             throw new Error(`Something went wrong`);
         }
-        const data = response.json();
+        const data = await response.json();
         return {user: data, token};
     }
 )
 
-export const updateUser = createAsyncThunk(
+export const updateUser = createAsyncThunk<UserProfile, UserDate, { state: RootState}>(
     'user/update',
-    async (user: UserDate, {getState}) => {
+    async (user, {getState}) => {
         const response = await fetch(`${base_url}/account/user`, {
             method: 'PUT',
             body: JSON.stringify(user),
@@ -61,6 +62,6 @@ export const updateUser = createAsyncThunk(
         if (!response.ok) {
             throw new Error(`Something went wrong`);
         }
-        return response.json();
+        return await response.json();
     }
 )
