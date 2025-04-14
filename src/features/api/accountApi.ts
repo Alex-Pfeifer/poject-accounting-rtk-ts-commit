@@ -1,0 +1,25 @@
+import {createAsyncThunk} from "@reduxjs/toolkit";
+import {UserRegister} from "../../utils/types";
+import {base_url} from "../../utils/constants.ts";
+
+export const registerUser = createAsyncThunk(
+    'user/register',
+    async (user: UserRegister) => {
+        const response = await fetch(`${base_url}/account/user`, {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if(response.status === 409){
+            throw new Error(`user ${user.login} already exists}`);
+        }
+        if (!response.ok){
+            throw new Error(`Something went wrong`);
+        }
+        const data = await response.json();
+        return {user: data, token}
+
+    }
+)
