@@ -12,10 +12,10 @@ export const registerUser = createAsyncThunk(
                 'Content-Type': 'application/json'
             }
         })
-        if(response.status === 409){
+        if (response.status === 409) {
             throw new Error(`user ${user.login} already exists}`);
         }
-        if (!response.ok){
+        if (!response.ok) {
             throw new Error(`Something went wrong`);
         }
         const data = await response.json();
@@ -33,16 +33,15 @@ export const fetchUser = createAsyncThunk(
                 'Authorization': token
             }
         })
-        if (response.status === 401){
+        if (response.status === 401) {
             throw new Error(`Login or password incorrect`);
         }
-        if (!response.ok){
+        if (!response.ok) {
             throw new Error(`Something went wrong`);
         }
         const data = response.json();
         return {user: data, token};
     }
-
 )
 
 export const updateUser = createAsyncThunk(
@@ -56,5 +55,12 @@ export const updateUser = createAsyncThunk(
                 Authorization: getState().token
             }
         })
+        if (response.status === 401) {
+            throw new Error(`Login or password incorrect`);
+        }
+        if (!response.ok) {
+            throw new Error(`Something went wrong`);
+        }
+        return response.json();
     }
 )
