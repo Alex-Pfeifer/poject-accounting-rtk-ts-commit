@@ -21,6 +21,26 @@ export const registerUser = createAsyncThunk(
         const data = await response.json();
         const token = createToken(user.login, user.password);
         return {user: data, token}
-
     }
+)
+
+export const fetchUser = createAsyncThunk(
+    'user/fetch',
+    async (token: string) => {
+        const response = await fetch(`${base_url}/account/login`, {
+            method: 'Post',
+            headers: {
+                'Authorization': token
+            }
+        })
+        if (response.status === 401){
+            throw new Error(`Login or password incorrect`);
+        }
+        if (!response.ok){
+            throw new Error(`Something went wrong`);
+        }
+        const data = response.json();
+        return {user: data, token};
+    }
+
 )
