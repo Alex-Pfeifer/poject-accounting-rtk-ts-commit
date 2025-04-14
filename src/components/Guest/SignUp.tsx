@@ -10,7 +10,7 @@ const SignUp = () => {
     const dispatch = useAppDispatch();
 
     const handelClickSignUp = () => {
-        dispatch(registerUser({login, password, firstName, lastName}))
+        dispatch(registerUser({login, password, firstName, lastName}));
     }
 
     const handelClickClear = () => {
