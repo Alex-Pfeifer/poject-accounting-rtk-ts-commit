@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {UserRegister} from "../../utils/types";
+import {UserDate, UserRegister} from "../../utils/types";
 import {base_url, createToken} from "../../utils/constants.ts";
 
 export const registerUser = createAsyncThunk(
@@ -43,4 +43,18 @@ export const fetchUser = createAsyncThunk(
         return {user: data, token};
     }
 
+)
+
+export const updateUser = createAsyncThunk(
+    'user/update',
+    async (user: UserDate, {getState}) => {
+        const response = await fetch(`${base_url}/account/user`, {
+            method: 'PUT',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: getState().token
+            }
+        })
+    }
 )
