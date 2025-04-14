@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {UserProfile} from "../../utils/types.d";
-import {registerUser} from "../api/accountApi.ts";
+import {fetchUser, registerUser, updateUser} from "../api/accountApi.ts";
 
 const initialState = {} as UserProfile
 
