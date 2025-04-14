@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {UserRegister} from "../../utils/types";
-import {base_url} from "../../utils/constants.ts";
+import {base_url, createToken} from "../../utils/constants.ts";
 
 export const registerUser = createAsyncThunk(
     'user/register',
@@ -19,6 +19,7 @@ export const registerUser = createAsyncThunk(
             throw new Error(`Something went wrong`);
         }
         const data = await response.json();
+        const token = createToken(user.login, user.password);
         return {user: data, token}
 
     }
