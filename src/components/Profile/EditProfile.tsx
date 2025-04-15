@@ -42,9 +42,9 @@ const EditProfile = ({close}: Props) => {
                     onChange={(e) => setLastName(e.target.value)}
                 />
             </label>
-            <button onClick={handelCkickClear}>Save and Close</button>
+            <button onClick={handelClickSave}>Save and Close</button>
             <button onClick={close}>Close without Save</button>
-            <button onClick={handelClickSave}>Clear</button>
+            <button onClick={handelCkickClear}>Clear</button>
 
         </>
     );

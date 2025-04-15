@@ -14,7 +14,7 @@ const ChangePassword = ({close}: Props) => {
 
 
     const handelClickSave = () => {
-        if (newPassword === oldPassword) {
+        if (newPassword === confirmPassword) {
             dispatch(changePassword({newPassword, oldPassword}));
         } else {
             alert('New Password and confirm password are different');

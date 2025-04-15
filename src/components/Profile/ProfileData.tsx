@@ -9,9 +9,7 @@ const ProfileData = () => {
             <p>Last name: {lastName}</p>
             <p>Login: {login}</p>
             <ul>
-                <li>
-                    {roles.map(role => <li key = {role} > {role} </li >)}
-                </li>
+                {roles.map(role => <li key={role}> {role} </li>)}
             </ul>
         </>
     );
