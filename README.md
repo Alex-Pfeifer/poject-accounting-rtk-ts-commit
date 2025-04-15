@@ -1,5 +1,11 @@
 # React + TypeScript + Vite
 
+Шаги по настройке Redux Toolkit
+Установили зависимости
+
+npm i react-redux @reduxjs/toolkit axios
+
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
